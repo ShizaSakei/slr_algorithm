@@ -340,7 +340,7 @@ Algoritmo SLR_Algoritmo
 	// Evaluación de calidad del documento 3
 	Dimension listado_de_respuestas_3[n_preguntas]
 	Si verificar(aceptar_tercer_doc) Entonces
-		Imprimir "DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_tres
+		Imprimir "DOCUMENTO: ", c_titulo_tres, " | AUTOR: ", c_autor_tres
 		Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
 			Imprimir listado_de_preguntas[i];
 			Para j<-1 Hasta n_calif Con Paso 1 Hacer
@@ -350,6 +350,101 @@ Algoritmo SLR_Algoritmo
 			listado_de_respuestas_3[i] = calificacion
 		Fin Para
 	FinSi
+	
+	
+	// ***************  MÓDULO DE REPORTE
+	Imprimir '4. REPORTE'
+	Imprimir '******************************************************'
+	Imprimir ''
+	Imprimir '------------------ | 1. REVISIÓN | ------------------'
+	Imprimir r_titulo
+	Imprimir r_autores
+	Imprimir '------------------ | Descripción | ------------------'
+	Imprimir r_descripcion
+	
+	Imprimir ''
+	Imprimir '------------------ | 2. PLANIFICACIÓN | ------------------'
+	Imprimir ''
+	Imprimir '------------------ | Objetivos | ------------------'
+	Imprimir p_objetivos
+	Imprimir '------------------ | PICOC | ------------------'
+	Imprimir "Población: ", poblacion
+	Imprimir "Intervencion: ", intervencion
+	Imprimir "Comparación: ", comparacion
+	Imprimir "Resultado: ", resultado 
+	Imprimir "Contexto: ", contexto
+	Imprimir '------------------ | Palabras Clave y Sinonimos | ------------------'
+	Imprimir 'Palabra Claves  |  Sinonimos'
+	Imprimir poblacion, '  |  ', sinonimos_poblacion
+	Imprimir intervencion, '  |  ', sinonimos_intervencion
+	Imprimir comparacion, '  |  ', sinonimos_comparacion
+	Imprimir resultado, '  |  ', sinonimos_resultado 
+	Imprimir contexto, '  |  ', sinonimos_contexto 
+	Imprimir '------------------ | Cadena de Busqueda | ------------------'
+	Imprimir '(`',poblacion,'`) AND (`',intervencion,'`) AND (`',comparacion,'`)  AND (`',resultado,'`)'
+	Imprimir '------------------ | Fuentes | ------------------'
+	Imprimir "DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_uno
+	Imprimir "DOCUMENTO: ", c_titulo_dos, " | AUTOR: ", c_autor_dos
+	Imprimir "DOCUMENTO: ", c_titulo_tres, " | AUTOR: ", c_autor_tres
+	Imprimir '------------------ | Lista de verificación | ------------------'
+	Imprimir '------------------ | Preguntas | ------------------'
+	Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
+		Imprimir '(',i,')', listado_de_preguntas[i];
+	Fin Para
+	Imprimir '------------------ | Calificación | ------------------'
+	Para j<-1 Hasta n_calif Con Paso 1 Hacer
+		Imprimir '(',j,')', listado_de_calificaciones[j];
+	Fin Para
+	
+	Imprimir ''
+	Imprimir '------------------ | 3. CONDUCCIÓN | ------------------'
+	Imprimir ''
+	Imprimir '------------------ | Estudios Seleccionados | ------------------'
+	Si verificar(aceptar_primer_doc) Entonces
+		Imprimir "(1) DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_uno
+	FinSi
+	
+	Si verificar(aceptar_segundo_doc) Entonces
+		Imprimir "(2) DOCUMENTO: ", c_titulo_dos, " | AUTOR: ", c_autor_dos
+	FinSi
+	
+	Si verificar(aceptar_tercer_doc) Entonces
+		Imprimir "(3) DOCUMENTO: ", c_titulo_tres, " | AUTOR: ", c_autor_tres
+	FinSi
+	Imprimir '------------------ | Evaluación de la calidad | ------------------'
+	Si verificar(aceptar_primer_doc) Entonces
+		Imprimir "(1) DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_uno
+		Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
+			Imprimir listado_de_preguntas[i];
+			Para j<-1 Hasta n_calif Con Paso 1 Hacer
+				Imprimir listado_de_calificaciones[j], '(', j ,')' Sin Saltar
+			Fin Para 
+			Imprimir '•Respuesta seleccionada: ', listado_de_respuestas_1[i]
+		Fin Para
+	FinSi
+	
+	Si verificar(aceptar_segundo_doc) Entonces
+		Imprimir "(2) DOCUMENTO: ", c_titulo_dos, " | AUTOR: ", c_autor_dos
+		Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
+			Imprimir listado_de_preguntas[i];
+			Para j<-1 Hasta n_calif Con Paso 1 Hacer
+				Imprimir listado_de_calificaciones[j], '(', j ,')' Sin Saltar
+			Fin Para 
+			Imprimir '•Respuesta seleccionada: ', listado_de_respuestas_2[i]
+		Fin Para
+	FinSi
+	
+	Si verificar(aceptar_tercer_doc) Entonces
+		Imprimir "(3) DOCUMENTO: ", c_titulo_tres, " | AUTOR: ", c_autor_tres
+		Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
+			Imprimir listado_de_preguntas[i];
+			Para j<-1 Hasta n_calif Con Paso 1 Hacer
+				Imprimir listado_de_calificaciones[j], '(', j ,')' Sin Saltar
+			Fin Para 
+			Imprimir '•Respuesta seleccionada: ', listado_de_respuestas_3[i]
+		Fin Para
+	FinSi
+	
 	
 FinAlgoritmo
 
