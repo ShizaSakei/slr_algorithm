@@ -64,45 +64,45 @@ Algoritmo SLR_Algoritmo
 	// *************** MODULO DE REVISION
 	
 	Imprimir '1. REVISION'
-	Imprimir 'Ingrese titulo'
+	Imprimir 'Ingrese titulo: ' Sin Saltar
 	leer r_titulo //Titulo de la revision
-	Escribir 'Ingrese descripcion de revision'
+	Escribir 'Ingrese descripcion de revision: ' Sin Saltar
 	Leer r_descripcion //Descripcion de la revision
-	Imprimir  'Ingrese autores de revicion'
+	Imprimir  'Ingrese autores de revision: ' Sin Saltar
 	leer r_autores //Autores de la revision
 	
 	// *************** MODULO DE PLANIFICACION
 	
 	Imprimir '2. PLANIFICACION'
-	Imprimir 'Ingrese los objetivos'
+	Imprimir 'Ingrese los objetivos: ' Sin Saltar
 	Leer p_objetivos //Objetivos de revision
 		
 	//  Entradas del PICOC
-	Imprimir "¿Cuál es la población?" // Pregunta
+	Imprimir "P: ¿Cuál es la población?" // Pregunta
 	Imprimir "Ingrese las palabras clave: " Sin Saltar
 	Leer poblacion // Palabras clave
 	Imprimir "Ingrese los sinonimos: " Sin Saltar
 	Leer sinonimos_poblacion // Sinonimos
 	
-	Imprimir "¿Qué interviene en la investigación?" // Pregunta
+	Imprimir "I: ¿Qué interviene en la investigación?" // Pregunta
 	Imprimir "Ingrese las palabras clave: " Sin Saltar 
 	Leer intervencion  // Palabras clave
 	Imprimir "Ingrese los sinonimos: " Sin Saltar
 	Leer sinonimos_intervencion // Sinonimos
 	
-	Imprimir "¿Con qué puede compararse?" // Pregunta
+	Imprimir "C: ¿Con qué puede compararse?" // Pregunta
 	Imprimir "Ingrese las palabras clave: " Sin Saltar 
 	Leer comparacion // Palabras clave
 	Imprimir "Ingrese los sinonimos: " Sin Saltar
 	Leer sinonimos_comparacion
 	
-	Imprimir "¿Qué resultados espera obtener?" // Pregunta
+	Imprimir "O: ¿Qué resultados espera obtener?" // Pregunta
 	Imprimir "Ingrese las palabras clave: " Sin Saltar
 	Leer resultado // Palabras clave
 	Imprimir "Ingrese los sinonimos: " Sin Saltar
 	Leer sinonimos_resultado // Sinonimos
 	
-	Imprimir "¿En qué tipo de circunstancias se encuentra?" // Pregunta
+	Imprimir "C: ¿En qué tipo de circunstancias se encuentra?" // Pregunta
 	Imprimir "Ingrese las palabras clave: " Sin Saltar
 	Leer contexto // Palabras clave
 	Imprimir "Ingrese los sinonimos: " Sin Saltar
