@@ -79,18 +79,35 @@ Funcion contador <- contar_palabras ( pregunta, documento )
 	Fin Mientras
 Fin Funcion
 
+// Funcion para el verificar respuestas Si o No
+Funcion seleccion <- verificar ( respuesta )
+	Si respuesta == 'si' o respuesta == 'SI' o respuesta ='Si' Entonces
+		seleccion = Verdadero
+	SiNo
+		seleccion = Falso
+	FinSi
+Fin Funcion
 
+
+// Funcion para el verificar respuestas Si o No
+SubProceso respuesta <- obtener_respuesta ( pregunta, calificaciones )
+	Mientras i < Longitud(calificaciones) Hacer
+		Imprimir calificaciones[i], "(", i ,")"
+	Fin Mientras
+	Escribir "Seleccione una calificación:"
+	Leer respuesta
+FinSubProceso
 
 Algoritmo SLR_Algoritmo
 	
 	// *************** MODULO DE REVISION
 	
 	Imprimir '1. REVISION'
-	Imprimir 'Ingrese titulo: ' Sin Saltar
+	Escribir 'Ingrese titulo: ' Sin Saltar
 	leer r_titulo //Titulo de la revision
 	Escribir 'Ingrese descripcion de revision: ' Sin Saltar
 	Leer r_descripcion //Descripcion de la revision
-	Imprimir  'Ingrese autores de revision: ' Sin Saltar
+	Escribir  'Ingrese autores de revision: ' Sin Saltar
 	leer r_autores //Autores de la revision
 	
 	// *************** MODULO DE PLANIFICACION
@@ -193,6 +210,7 @@ Algoritmo SLR_Algoritmo
 	Mientras i <= Longitud(preguntas) + 1 Hacer
 		letra = Subcadena(preguntas,i,i)
 		Si letra == "?" Entonces
+			cadena_aux = Concatenar(cadena_aux,"?")
 			listado_de_preguntas[aux_cont] = cadena_aux
 			cadena_aux = ""
 			aux_cont = aux_cont + 1
@@ -211,7 +229,7 @@ Algoritmo SLR_Algoritmo
 	
 	Mientras j <= Longitud(calificaciones) + 1 Hacer
 		letra = Subcadena(calificaciones,j,j)
-		Si letra == "?" Entonces
+		Si letra == "," o j == Longitud(calificaciones) + 1  Entonces
 			listado_de_calificaciones[aux_cont] = cadena_aux
 			cadena_aux = ""
 			aux_cont = aux_cont + 1
@@ -271,6 +289,67 @@ Algoritmo SLR_Algoritmo
 	Imprimir "Palabras clave de Comparación: ", conteo_comp_tercer_doc
 	Imprimir "Palabras clave de Resultado: ", conteo_res_tercer_doc
 	Imprimir "Palabras clave de Contexto: ", conteo_con_tercer_doc
+	
+	
+	// ***************  MÓDULO DE CONDUCCIÓN
+	Imprimir '3. CONDUCCIÓN'
+	Imprimir "SELECCIÓN DE ESTUDIOS"
+	Imprimir "DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_uno
+	Escribir "Aceptar Documento (si|no):" Sin Saltar
+	Leer aceptar_primer_doc
+	
+	Imprimir "DOCUMENTO: ", c_titulo_dos, " | AUTOR: ", c_autor_dos
+	Escribir "Aceptar Documento (si|no):" Sin Saltar
+	Leer aceptar_segundo_doc
+	
+	Imprimir "DOCUMENTO: ", c_titulo_tres, " | AUTOR: ", c_autor_tres
+	Escribir "Aceptar Documento (si|no):" Sin Saltar
+	Leer aceptar_tercer_doc
+
+	Imprimir '******************************************************'
+	Imprimir "EVALUACION DE CALIDAD"
+	
+	// Evaluación de calidad del documento 1
+	Dimension listado_de_respuestas_1[n_preguntas]
+	Si verificar(aceptar_primer_doc) Entonces
+		Imprimir "DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_uno
+		Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
+			Imprimir listado_de_preguntas[i];
+			Para j<-1 Hasta n_calif Con Paso 1 Hacer
+				Escribir listado_de_calificaciones[j], '(', j ,')';
+			Fin Para 
+			Leer calificacion
+			listado_de_respuestas_1[i] = calificacion
+		Fin Para
+	FinSi
+	
+	// Evaluación de calidad del documento 2
+	Dimension listado_de_respuestas_2[n_preguntas]
+	Si verificar(aceptar_segundo_doc) Entonces
+		Imprimir "DOCUMENTO: ", c_titulo_dos, " | AUTOR: ", c_autor_dos
+		Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
+			Imprimir listado_de_preguntas[i];
+			Para j<-1 Hasta n_calif Con Paso 1 Hacer
+				Escribir listado_de_calificaciones[j], '(', j ,')';
+			Fin Para 
+			Leer calificacion
+			listado_de_respuestas_2[i] = calificacion
+		Fin Para
+	FinSi
+	
+	// Evaluación de calidad del documento 3
+	Dimension listado_de_respuestas_3[n_preguntas]
+	Si verificar(aceptar_tercer_doc) Entonces
+		Imprimir "DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_tres
+		Para i<-1 Hasta n_preguntas Con Paso 1 Hacer
+			Imprimir listado_de_preguntas[i];
+			Para j<-1 Hasta n_calif Con Paso 1 Hacer
+				Escribir listado_de_calificaciones[j], '(', j ,')';
+			Fin Para 
+			Leer calificacion
+			listado_de_respuestas_3[i] = calificacion
+		Fin Para
+	FinSi
 	
 FinAlgoritmo
 
