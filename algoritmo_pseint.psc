@@ -1,7 +1,3 @@
-Funcion variable_de_retorno <- review ( Argumentos )
-	
-Fin Funcion
-
 // Funcion para validar los resultados de la revisión
 Funcion resultado <- validar_documento ( total, cont1, cont2, cont3, cont4 )
 	min = redon(total*0.01)
@@ -65,7 +61,8 @@ Fin Funcion
 
 Algoritmo SLR_Algoritmo
 	
-	// *************** Modulo de revision
+	// *************** MODULO DE REVISION
+	
 	Imprimir '1. REVISION'
 	Imprimir 'Ingrese titulo'
 	leer r_titulo //Titulo de la revision
@@ -74,12 +71,13 @@ Algoritmo SLR_Algoritmo
 	Imprimir  'Ingrese autores de revicion'
 	leer r_autores //Autores de la revision
 	
-	// *************** Modulo de planificacion
+	// *************** MODULO DE PLANIFICACION
+	
 	Imprimir '2. PLANIFICACION'
 	Imprimir 'Ingrese los objetivos'
 	Leer p_objetivos //Objetivos de revision
 		
-	// ***************  Entradas del PICOC
+	//  Entradas del PICOC
 	Imprimir "¿Cuál es la población?" // Pregunta
 	Imprimir "Ingrese las palabras clave: " Sin Saltar
 	Leer poblacion // Palabras clave
@@ -110,32 +108,51 @@ Algoritmo SLR_Algoritmo
 	Imprimir "Ingrese los sinonimos: " Sin Saltar
 	Leer sinonimos_contexto // Sinonimos
 	
-	//Palabras claves
+	// *************** MODULO DE CONDUCCION
 	
-	//Conducción
-	// ***************  Entradas de Documentos
+	// Fuentes
 	Imprimir "A continuación ingrese documentos para ser revisados y comparar con sus parametros de búsqueda."
+	Escribir '******************************************************'
 	Escribir 'Ingrese datos del primer documento a considerar:'
 	Escribir 'Título: ' Sin Saltar
-	Leer c_titulo1
+	Leer c_titulo_uno
 	Escribir 'Ingrese autor: ' Sin Saltar 
-	Leer c_autor1
+	Leer c_autor_uno
 	Escribir 'Descripción, de preferencia que sea amplia' Sin Saltar
-	Leer c_descripción1
+	Leer c_descripción_uno
+	
+	Escribir '******************************************************'
+	Escribir 'Ingrese datos del segundo documento a considerar:'
+	Escribir 'Título: ' Sin Saltar
+	Leer c_titulo_dos
+	Escribir 'Ingrese autor: ' Sin Saltar 
+	Leer c_autor_dos
+	Escribir 'Descripción, de preferencia que sea amplia' Sin Saltar
+	Leer c_descripción_dos
+	
+	Escribir '******************************************************'
+	Escribir 'Ingrese datos del tercer documento a considerar:'
+	Escribir 'Título: ' Sin Saltar
+	Leer c_titulo_tres
+	Escribir 'Ingrese autor: ' Sin Saltar 
+	Leer c_autor_tres
+	Escribir 'Descripción, de preferencia que sea amplia' Sin Saltar
+	Leer c_descripción_tres
 	
 	
 	//Criterios de inclusión y exclusión
 	
-	// ***************  Desarrollo	
-	// Proceso para el primer documento
-	total_palabras_primer_doc = total_palabras(c_descripción1)
-	conteo_pobl_primer_doc = contar_palabras(poblacion,c_descripción1)
-	conteo_inter_primer_doc = contar_palabras(intervencion,c_descripción1)
-	conteo_comp_primer_doc = contar_palabras(comparacion,c_descripción1)
-	conteo_res_primer_doc = contar_palabras(resultado,c_descripción1)
-	conteo_con_primer_doc = contar_palabras(contexto,c_descripción1)
+	// ***************  MODULO DE REVISIÓN
 	
-	Imprimir "DOCUMENTO 1 - Resultados: "
+	// Proceso para el primer documento
+	total_palabras_primer_doc = total_palabras(c_descripción_uno)
+	conteo_pobl_primer_doc = contar_palabras(poblacion,c_titulo_uno) + contar_palabras(poblacion, c_descripción_uno)
+	conteo_inter_primer_doc = contar_palabras(intervencion, c_titulo_uno) + contar_palabras(intervencion, c_descripción_uno)
+	conteo_comp_primer_doc = contar_palabras(comparacion,c_titulo_uno) + contar_palabras(comparacion, c_descripción_uno)
+	conteo_res_primer_doc = contar_palabras(resultado,c_titulo_uno) + contar_palabras(resultado, c_descripción_uno)
+	conteo_con_primer_doc = contar_palabras(contexto,c_titulo_uno) + contar_palabras(contexto, c_descripción_uno)
+	
+	Imprimir "DOCUMENTO: ", c_titulo_uno, " | AUTOR: ", c_autor_uno
 	Imprimir "Número de palabras: ", total_palabras_primer_doc
 	Imprimir "Palabras clave de Población: ", conteo_pobl_primer_doc
 	Imprimir "Palabras clave de Intervencion: ", conteo_inter_primer_doc
@@ -144,14 +161,14 @@ Algoritmo SLR_Algoritmo
 	Imprimir "Palabras clave de Contexto: ", conteo_con_primer_doc
 	
 	// Proceso para el segundo documento
-	total_palabras_segundo_doc = total_palabras(documento_dos)
-	conteo_pobl_segundo_doc = contar_palabras(poblacion,documento_dos)
-	conteo_inter_segundo_doc = contar_palabras(intervencion,documento_dos)
-	conteo_comp_segundo_doc = contar_palabras(comparacion,documento_dos)
-	conteo_res_segundo_doc = contar_palabras(resultado,documento_dos)
-	conteo_con_segundo_doc = contar_palabras(contexto,documento_dos)
+	total_palabras_segundo_doc = total_palabras(c_descripción_dos)
+	conteo_pobl_segundo_doc = contar_palabras(poblacion,c_titulo_dos) + contar_palabras(poblacion,c_descripción_dos)
+	conteo_inter_segundo_doc = contar_palabras(intervencion,c_titulo_dos) + contar_palabras(intervencion,c_descripción_dos)
+	conteo_comp_segundo_doc = contar_palabras(comparacion,c_titulo_dos) + contar_palabras(comparacion,c_descripción_dos)
+	conteo_res_segundo_doc = contar_palabras(resultado,c_titulo_dos) + contar_palabras(resultado,c_descripción_dos)
+	conteo_con_segundo_doc = contar_palabras(contexto,c_titulo_dos) + contar_palabras(contexto,c_descripción_dos)
 	
-	Imprimir "DOCUMENTO 2 - Resultados: "
+	Imprimir "DOCUMENTO: ", c_titulo_dos, " | AUTOR: ", c_autor_dos
 	Imprimir "Número de palabras: ", total_palabras_segundo_doc
 	Imprimir "Palabras clave de Población: ", conteo_pobl_segundo_doc
 	Imprimir "Palabras clave de Intervencion: ", conteo_inter_segundo_doc
@@ -160,14 +177,14 @@ Algoritmo SLR_Algoritmo
 	Imprimir "Palabras clave de Contexto: ", conteo_con_segundo_doc
 	
 	// Proceso para el tercer documento
-	total_palabras_tercer_doc = total_palabras(documento_tres)
-	conteo_pobl_tercer_doc = contar_palabras(poblacion,documento_tres)
-	conteo_inter_tercer_doc = contar_palabras(intervencion,documento_tres)
-	conteo_comp_tercer_doc = contar_palabras(comparacion,documento_tres)
-	conteo_res_tercer_doc = contar_palabras(resultado,documento_tres)
-	conteo_con_tercer_doc = contar_palabras(contexto,documento_tres)
+	total_palabras_tercer_doc = total_palabras(c_descripción_tres)
+	conteo_pobl_tercer_doc = contar_palabras(poblacion,c_titulo_tres) + contar_palabras(poblacion,c_titulo_tres)
+	conteo_inter_tercer_doc = contar_palabras(intervencion,c_titulo_tres) + contar_palabras(intervencion,c_titulo_tres)
+	conteo_comp_tercer_doc = contar_palabras(comparacion,c_titulo_tres) + contar_palabras(comparacion,c_titulo_tres)
+	conteo_res_tercer_doc = contar_palabras(resultado,c_titulo_tres) + contar_palabras(resultado,c_titulo_tres)
+	conteo_con_tercer_doc = contar_palabras(contexto,c_titulo_tres) + contar_palabras(contexto,c_titulo_tres)
 	
-	Imprimir "DOCUMENTO 3 - Resultados: "
+	Imprimir "DOCUMENTO: ", c_titulo_tres, " | AUTOR: ", c_autor_tres
 	Imprimir "Número de palabras: ", total_palabras_tercer_doc
 	Imprimir "Palabras clave de Población: ", conteo_pobl_tercer_doc
 	Imprimir "Palabras clave de Intervencion: ", conteo_inter_tercer_doc
@@ -175,26 +192,6 @@ Algoritmo SLR_Algoritmo
 	Imprimir "Palabras clave de Resultado: ", conteo_res_tercer_doc
 	Imprimir "Palabras clave de Contexto: ", conteo_con_tercer_doc
 	
-	// Mostrar Documentos Válidos
-	Imprimir "DOCUMENTOS A CONSIDERAR: "
-	cont_validos = 0
-	Si validar_documento(total_palabras_primer_doc, conteo_pobl_primer_doc, conteo_inter_primer_doc, conteo_comp_primer_doc, conteo_res_primer_doc) Entonces
-		Imprimir "Documento 1"
-		cont_validos = cont_validos + 1
-	Fin Si
-	
-	Si validar_documento(total_palabras_segundo_doc, conteo_pobl_segundo_doc, conteo_inter_segundo_doc, conteo_comp_segundo_doc, conteo_res_segundo_doc) Entonces
-		Imprimir "Documento 2"
-		cont_validos = cont_validos + 1
-	Fin Si
-	
-	Si validar_documento(total_palabras_tercer_doc, conteo_pobl_tercer_doc, conteo_inter_tercer_doc, conteo_comp_tercer_doc, conteo_res_tercer_doc) Entonces
-		Imprimir "Documento 3"
-		cont_validos = cont_validos + 1
-	Fin Si
-	
-	Si cont_validos == 0 Entonces
-		Imprimir "Ninguno."
-	Fin Si
+	// 
 FinAlgoritmo
 
