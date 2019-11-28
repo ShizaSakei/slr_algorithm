@@ -89,15 +89,6 @@ Funcion seleccion <- verificar ( respuesta )
 Fin Funcion
 
 
-// Funcion para el verificar respuestas Si o No
-SubProceso respuesta <- obtener_respuesta ( pregunta, calificaciones )
-	Mientras i < Longitud(calificaciones) Hacer
-		Imprimir calificaciones[i], "(", i ,")"
-	Fin Mientras
-	Escribir "Seleccione una calificación:"
-	Leer respuesta
-FinSubProceso
-
 Algoritmo SLR_Algoritmo
 	
 	// *************** MODULO DE REVISION
@@ -356,12 +347,14 @@ Algoritmo SLR_Algoritmo
 	Imprimir '4. REPORTE'
 	Imprimir '******************************************************'
 	Imprimir ''
+	Imprimir ''
 	Imprimir '------------------ | 1. REVISIÓN | ------------------'
 	Imprimir r_titulo
 	Imprimir r_autores
 	Imprimir '------------------ | Descripción | ------------------'
 	Imprimir r_descripcion
 	
+	Imprimir ''
 	Imprimir ''
 	Imprimir '------------------ | 2. PLANIFICACIÓN | ------------------'
 	Imprimir ''
@@ -396,6 +389,7 @@ Algoritmo SLR_Algoritmo
 		Imprimir '(',j,')', listado_de_calificaciones[j];
 	Fin Para
 	
+	Imprimir ''
 	Imprimir ''
 	Imprimir '------------------ | 3. CONDUCCIÓN | ------------------'
 	Imprimir ''
