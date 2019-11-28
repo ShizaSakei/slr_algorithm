@@ -1,3 +1,25 @@
+Funcion contador <- contar_calif ( texto_entrante )
+	contador = 0
+	Mientras i <= Longitud(texto_entrante) + 1 Hacer
+		letra = Subcadena(texto_entrante,i,i)
+		Si letra == "," o i == Longitud(documento) + 1 Entonces
+			contador = contador + 1
+		Fin Si
+		i = i + 1
+	Fin Mientras
+Fin Funcion
+
+Funcion contador <- contar_preguntas ( texto_entrante )
+	contador = 0
+	Mientras i <= Longitud(texto_entrante) + 1 Hacer
+		letra = Subcadena(texto_entrante,i,i)
+		Si letra == "?" Entonces
+			contador = contador + 1
+		Fin Si
+		i = i + 1
+	Fin Mientras
+Fin Funcion
+
 // Funcion para validar los resultados de la revisión
 Funcion resultado <- validar_documento ( total, cont1, cont2, cont3, cont4 )
 	min = redon(total*0.01)
@@ -139,8 +161,66 @@ Algoritmo SLR_Algoritmo
 	Escribir 'Descripción, de preferencia que sea amplia' Sin Saltar
 	Leer c_descripción_tres
 	
+	// Evaluación de Calidad
+	Imprimir "A continuación ingresa las preguntas para la evaluación de calidad."
 	
-	//Criterios de inclusión y exclusión
+	seguir = Verdadero
+	preguntas = ""
+	
+	Mientras seguir Hacer
+		Escribir "Ingresa tu pregunta: " Sin Saltar
+		Leer aux
+		preguntas = Concatenar(preguntas,aux)
+		
+		Escribir "Deseas ingresar otra pregunta? (S/N): " Sin Saltar
+		Leer aux_seguir
+		
+		Si aux_seguir == "N" o aux_seguir == "n" Entonces
+			seguir = Falso
+		FinSi
+	Fin Mientras
+	
+	Imprimir "Ahora ingresa el rango de calificacion para las preguntas."
+	Imprimir "Calificaciones (Ej - Malo,Regular,Muy Bueno): " Sin Saltar
+	Leer calificaciones
+	
+	// Dividir preguntas
+	n_preguntas = contar_preguntas(preguntas)
+	Dimension listado_de_preguntas[n_preguntas]
+	aux_cont = 1
+	cadena_aux = ""
+	
+	Mientras i <= Longitud(preguntas) + 1 Hacer
+		letra = Subcadena(preguntas,i,i)
+		Si letra == "?" Entonces
+			listado_de_preguntas[aux_cont] = cadena_aux
+			cadena_aux = ""
+			aux_cont = aux_cont + 1
+		SiNo
+			cadena_aux = Concatenar(cadena_aux,letra)
+		Fin Si
+		
+		i = i + 1
+	Fin Mientras
+	
+	// Dividir calificaciones
+	n_calif = contar_calif (calificaciones)
+	Dimension listado_de_calificaciones[n_calif]
+	aux_cont = 1
+	cadena_aux = ""
+	
+	Mientras j <= Longitud(calificaciones) + 1 Hacer
+		letra = Subcadena(calificaciones,j,j)
+		Si letra == "?" Entonces
+			listado_de_calificaciones[aux_cont] = cadena_aux
+			cadena_aux = ""
+			aux_cont = aux_cont + 1
+		SiNo
+			cadena_aux = Concatenar(cadena_aux,letra)
+		Fin Si
+		
+		j = j + 1
+	Fin Mientras
 	
 	// ***************  MODULO DE REVISIÓN
 	
@@ -192,6 +272,5 @@ Algoritmo SLR_Algoritmo
 	Imprimir "Palabras clave de Resultado: ", conteo_res_tercer_doc
 	Imprimir "Palabras clave de Contexto: ", conteo_con_tercer_doc
 	
-	// 
 FinAlgoritmo
 
